@@ -1,0 +1,56 @@
+services:
+  postgres-service:
+    container_name: DB
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: orbits
+      POSTGRES_USER: orbits_user
+      POSTGRES_PASSWORD: orbits_pass
+    ports:
+      - 5431:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  backend-service:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: backend.Dockerfile
+    environment:
+      DB_HOST: postgres-service
+      DB_PORT: 5432
+      DB_NAME: orbits
+      DB_USER: orbits_user
+      DB_PASS: orbits_pass
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - postgres-service
+      - redis
+    networks:
+      - app-network
+    ports:
+      - 8000:8000
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  postgres-data:

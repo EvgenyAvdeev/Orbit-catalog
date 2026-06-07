@@ -1,0 +1,8 @@
+# token for yandex disk
+YANDEX_TOKEN = "y0_AgAEA7qkdeQ0AAyYmgAAAAEUHZWBAADKPs5sdwxNsLJKbN-aFvECH3sAew"
+
+# server info
+SUDO_PASSWORD = "MHGX2BE8"
+SERVER_USER = "drgafurova"
+SERVER_HOST = "172.18.130.44"
+SERVER_PORT = 5131

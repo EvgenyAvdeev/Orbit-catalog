@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan">
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+    </TestPlan>
+
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup">
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>  <!-- Начните с 1 пользователя -->
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <stringProp name="ThreadGroup.loop_count">1</stringProp>  <!-- Всего 1 запрос -->
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+      </ThreadGroup>
+
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy">
+          <stringProp name="HTTPSampler.domain">backend</stringProp>  <!-- Имя контейнера -->
+          <stringProp name="HTTPSampler.port">8000</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <stringProp name="HTTPSampler.path">/orbit_view/get_map</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+        </HTTPSamplerProxy>
+
+        <hashTree>
+          <!-- Добавим сохранение ответа -->
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector">
+            <stringProp name="filename">/tests/response.jtl</stringProp>
+          </ResultCollector>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

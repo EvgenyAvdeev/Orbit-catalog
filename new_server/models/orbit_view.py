@@ -1,0 +1,94 @@
+from models.base import RepoBaseModel
+
+class OrbitViewModel(RepoBaseModel):
+    orbit_id: int
+    x: float
+    y: float
+    z: float
+    vx: float
+    vy: float
+    vz: float
+    abs_v: float
+    ax: float
+    ay: float
+    az: float
+    floke_1_r: float
+    floke_2_r: float
+    floke_3_r: float
+    floke_4_r: float
+    floke_5_r: float
+    floke_6_r: float
+    t: float
+    cj: float
+    dist_primary: float
+    dist_secondary: float
+    family_tag: str
+    lib_point: str
+    stable: bool
+    stability_ind_1: float
+    stability_ind_2: float
+    stability_ind_3: float
+    alpha: float
+    beta: float
+
+class MapResponseModel(RepoBaseModel):
+    orbit_id: int
+    x: float
+    z: float
+    vy: float
+    abs_v: float
+    cj: float
+    ax: float
+    ay: float
+    az: float
+    dist_primary: float
+    dist_secondary: float
+    stable: bool
+    stability_ind_1: float
+    stability_ind_2: float
+    stability_ind_3: float
+    family_tag: str
+    lib_point: str
+
+class OneOrbitResponseModel(RepoBaseModel):
+    orbit_id: int
+    x: float
+    z: float
+    ax: float
+    ay: float
+    az: float
+    vy: float
+    t: float
+    cj: float
+    dist_primary: float
+    dist_secondary: float
+    lib_point: str
+    family_tag: str
+    stable: bool
+
+class FamilyParamResponseModel(RepoBaseModel):
+    orbit_id: int
+    param_x: float
+    param_y: float
+    param_z: float
+    x: float
+    z: float
+    cj: float
+
+class BrouckeResponseModel(RepoBaseModel):
+    orbit_id: int
+    x: float
+    z: float
+    vy: float
+    ax: float
+    ay: float
+    az: float
+    t: float
+    cj: float
+    dist_primary: float
+    dist_secondary: float
+    lib_point: str
+    family_tag: str
+    stable: bool
+    alpha: float
+    beta: float
